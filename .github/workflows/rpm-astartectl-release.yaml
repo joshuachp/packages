@@ -1,0 +1,68 @@
+name: rpm-astartectl-build
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - released
+permissions:
+  contents: read
+# Spend CI time only on latest ref
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+jobs:
+  create-sources:
+    runs-on: ubuntu-24.04
+    if: startsWith(github.event.release.tag_name, 'astartectl')
+    container:
+      image: fedora:41
+    steps:
+      - name: install dependencies
+        run: |
+          dnf install -y fedora-packager git rpmlint go2rpm
+      - uses: actions/checkout@v4
+      # BUG: fixes permission in github actions container
+      - name: set safe git directory
+        run: |
+          git config --system --add safe.directory "$PWD"
+      - name: build the rpm
+        run: |
+          rpmdev-setuptree
+          cd rpm/astartectl
+          ./generate.sh
+          CHANGED="$(git status -u --porcelain)"
+          if [[ -n "$CHANGED" ]]; then
+            git diff
+            echo "file changed"
+            exit 1
+          fi
+      - name: upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: astartectl-sources
+          if-no-files-found: error
+          path: |
+            rpm/astartectl/go-vendor-tools.toml
+            rpm/astartectl/astartectl-*-vendor-tar.bz2
+  upload-to-release:
+    runs-on: ubuntu-24.04
+    needs: create-sources
+    if: github.event_name == release
+    steps:
+      - name: download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: astartectl-sources
+      - name: upload to relase
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          find -type f
+          gh release upload -R "$REPOSITORY" "$TAG" \
+            rpm/astartectl/go-vendor-tools.toml \
+            rpm/astartectl/astartectl-*-vendor-tar.bz2

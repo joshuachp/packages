@@ -1,4 +1,4 @@
-name: build-astartectl-rpm
+name: rpm-astartectl-build
 on:
   workflow_dispatch:
   pull_request:
@@ -24,16 +24,23 @@ jobs:
     container:
       image: fedora:41
     steps:
-      - uses: actions/checkout@v4
       - name: install dependencies
         run: |
-          dnf install -y fedora-packager go2rpm
+          dnf install -y fedora-packager git rpmlint go2rpm
+      - uses: actions/checkout@v4
+        with:
+          set-safe-directory: true
+      # BUG: fixes permission in github actions container
+      - name: set safe git directory
+        run: |
+          git config --system --add safe.directory "$PWD"
       - name: build the rpm
         run: |
           rpmdev-setuptree
           cd rpm/astartectl
           ./generate.sh
-          if [[ -n "$(git status -u --porcelain)" ]]; then
+          CHANGED="$(git status -u --porcelain)"
+          if [[ -n "$CHANGED" ]]; then
             git diff
             echo "file changed"
             exit 1
