@@ -1,0 +1,23 @@
+[package]
+
+[requires]
+build = []
+
+[scripts]
+# Fix shebangs in rust files
+prep.post = [
+  '''
+find ./vendor -type f -executable -name '*.rs' -exec chmod -x '{}' \;
+''',
+]
+install.post = ['''''']
+
+[features]
+enable = ["default-no-update"]
+disable-default = true
+enable-all = false
+hide = []
+
+[tests]
+run = ["none"]
+comments = ["Doesn't compile for testutils"]

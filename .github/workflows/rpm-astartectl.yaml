@@ -1,0 +1,41 @@
+name: build-astartectl-rpm
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "rpm/astartectl/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "rpm/astartectl/**"
+permissions:
+  contents: read
+# Spend CI time only on latest ref
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container:
+      image: fedora:41
+    steps:
+      - uses: actions/checkout@v4
+      - name: install dependencies
+        run: |
+          dnf install -y fedora-packager go2rpm
+      - name: build the rpm
+        run: |
+          rpmdev-setuptree
+          cd rpm/astartectl
+          ./generate.sh
+          if [[ -n "$(git status -u --porcelain)" ]]; then
+            git diff
+            echo "file changed"
+            exit 1
+          fi
+          ./build.sh

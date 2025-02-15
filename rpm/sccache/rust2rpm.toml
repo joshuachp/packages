@@ -1,0 +1,34 @@
+[package]
+#extra-files= [
+#]
+
+[requires]
+build = [
+    "pkgconfig(openssl)",
+    "pkgconfig(zlib)",
+#    "cmake",
+]
+
+[scripts]
+#prep.post = [
+#    # Fix shebangs in rust files
+#    '''
+#    find ./vendor -type f -executable -name '*.rs' -exec chmod -x '{}' \;
+#    '''
+#]
+#install.post = [
+#'''
+#mkdir -p "$RPM_BUILD_ROOT%{_datadir}/fish/vendor_completions.d"
+#COMPLETE=fish "$RPM_BUILD_ROOT%{_bindir}/jj" |
+#    sed -e "s|$RPM_BUILD_ROOT||g" > "$RPM_BUILD_ROOT%{_datadir}/fish/vendor_completions.d/jj.fish"
+#''',
+#]
+
+[features]
+enable = ["native-zlib"]
+enable-all = false
+hide = ["dist-tests"]
+
+[tests]
+run = ["none"]
+comments = ["Doesn't compile for testutils"]

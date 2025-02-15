@@ -1,0 +1,41 @@
+[package]
+extra-files = [
+  "%{bash_completions_dir}/jj.bash",
+  "%{fish_completions_dir}/jj.fish",
+  "%{zsh_completions_dir}/_jj",
+]
+
+[requires]
+build = [
+  "pkgconfig(openssl)",
+  "pkgconfig(zlib)",
+  "cmake",
+]
+
+[scripts]
+prep.post = [
+  # Fix shebangs in rust files
+  '''
+    find ./vendor -type f -executable -name '*.rs' -exec chmod -x '{}' \;
+    ''',
+]
+install.post = [
+  '''
+COMPLETE=bash "%{buidroot}%{_bindir}/jj" > jj.bash
+COMPLETE=fish "%{buildroot}%{_bindir}/jj" > jj.fish
+COMPLETE=zsh "%{buildroot}%{_bindir}/jj" > _jj
+sed -i -e 's|%{buildroot}||g' jj.bash jj.fish _jj
+install -Dpm 0644 jj.bash -t %{buildroot}%{bash_completions_dir}
+install -Dpm 0644 jj.fish -t %{buildroot}%{fish_completions_dir}
+install -Dpm 0644 _jj -t %{buildroot}%{zsh_completions_dir}
+''',
+]
+
+[features]
+enable = ["packaging"]
+enable-all = false
+hide = ["test-fakes"]
+
+[tests]
+run = ["none"]
+comments = ["Doesn't compile for testutils"]

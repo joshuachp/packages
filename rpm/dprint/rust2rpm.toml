@@ -1,0 +1,37 @@
+[package]
+summary = "Pluggable and configurable code formatting platform written in Rust."
+extra-files = [
+  "%{bash_completions_dir}/dprint.bash",
+  "%{fish_completions_dir}/dprint.fish",
+  "%{zsh_completions_dir}/_dprint",
+]
+
+[requires]
+build = []
+
+[scripts]
+# Fix shebangs in rust files
+prep.post = [
+  '''
+find ./vendor -type f -executable -name '*.rs' -exec chmod -x '{}' \;
+''',
+]
+install.post = [
+  '''
+"%{buildroot}%{_bindir}/dprint" completions bash > dprint.bash
+"%{buildroot}%{_bindir}/dprint" completions fish > dprint.fish
+"%{buildroot}%{_bindir}/dprint" completions zsh > _dprint
+install -Dpm 0644 dprint.bash -t %{buildroot}%{bash_completions_dir}
+install -Dpm 0644 dprint.fish -t %{buildroot}%{fish_completions_dir}
+install -Dpm 0644 _dprint -t %{buildroot}%{zsh_completions_dir}
+''',
+]
+
+[features]
+enable = []
+enable-all = false
+hide = []
+
+[tests]
+run = ["none"]
+comments = ["Doesn't compile for testutils"]
