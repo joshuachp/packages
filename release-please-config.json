@@ -3,7 +3,8 @@
   "packages": {
     "rpm/astartectl": {
       "package-name": "astartectl",
-      "release-type": "simple"
+      "release-type": "simple",
+      "release-as": "24.5.2"
     }
   }
 }
