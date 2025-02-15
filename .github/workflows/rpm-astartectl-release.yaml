@@ -1,4 +1,4 @@
-name: rpm-astartectl-build
+name: rpm-astartectl-release
 on:
   workflow_dispatch:
   release:
