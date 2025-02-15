@@ -66,5 +66,5 @@ jobs:
         run: |
           find -type f
           gh release upload -R "$REPOSITORY" "$TAG" \
-            rpm/astartectl/go-vendor-tools.toml \
-            rpm/astartectl/astartectl-*-vendor-tar.bz2
+            go-vendor-tools.toml \
+            astartectl-*-vendor.tar.bz2
