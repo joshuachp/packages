@@ -48,7 +48,7 @@ jobs:
           if-no-files-found: error
           path: |
             rpm/astartectl/go-vendor-tools.toml
-            rpm/astartectl/astartectl-*-vendor-tar.bz2
+            rpm/astartectl/astartectl-*-vendor.tar.bz2
   upload-to-release:
     runs-on: ubuntu-24.04
     needs: create-sources
