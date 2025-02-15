@@ -1,0 +1,31 @@
+[package]
+extra-files = [
+  "%{bash_completions_dir}/starship.bash",
+  "%{fish_completions_dir}/starship.fish",
+  "%{zsh_completions_dir}/_starship",
+]
+
+[requires]
+build = [
+  "pkgconfig(zlib)",
+  "cmake",
+]
+
+[scripts]
+install.post = [
+  '''
+%{buildroot}/%{_bindir}/starship completions bash > starship.bash
+%{buildroot}/%{_bindir}/starship completions fish > starship.fish
+%{buildroot}/%{_bindir}/starship completions zsh > starship.zsh
+install -Dpm 0644 starship.bash -t %{buildroot}%{bash_completions_dir}
+install -Dpm 0644 starship.fish -t %{buildroot}%{fish_completions_dir}
+install -Dpm 0644 _starship -t %{buildroot}%{zsh_completions_dir}
+''',
+]
+
+[features]
+enable-all = false
+
+[tests]
+run = ["none"]
+comments = ["Doesn't compile for testutils"]
