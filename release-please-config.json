@@ -2,6 +2,7 @@
   "$schema": "https://github.com/googleapis/release-please/raw/refs/heads/main/schemas/config.json",
   "packages": {
     "rpm/astartectl": {
+      "package-name": "astartectl",
       "release-type": "simple"
     }
   }
