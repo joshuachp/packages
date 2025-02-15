@@ -16,7 +16,9 @@ defaults:
 jobs:
   create-sources:
     runs-on: ubuntu-24.04
-    if: startsWith(github.event.release.tag_name, 'astartectl')
+    if: |
+      startsWith(github.event.release.tag_name, 'astartectl') ||
+      github.event_name == 'workflow_dispatch'
     container:
       image: fedora:41
     steps:
