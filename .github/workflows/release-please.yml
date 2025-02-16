@@ -14,7 +14,7 @@ jobs:
   release-please:
     runs-on: ubuntu-24.04
     outputs:
-      release: ${{ steps.release.outputs }}
+      release: ${{ toJson(steps.release.outputs) }}
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
@@ -27,6 +27,6 @@ jobs:
     needs: [release-please]
     uses: ./.github/workflows/rpm-astartectl-release.yaml
     secrets: inherit
-    if: ${{ needs.release-please.outputs.release['rpm/astartectl--release_created'] }}
+    if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/astartectl--release_created'] }}
     with:
-      tag: ${{ needs.release-please.outputs.release['rpm/astartectl--tag_name'] }}
+      tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/astartectl--tag_name'] }}
