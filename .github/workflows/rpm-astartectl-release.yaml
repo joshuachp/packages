@@ -63,8 +63,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: ${{ github.repository }}
           TAG: ${{ github.event.release.tag_name }}
+          WEBHOOK: ${{ secrets.COPR_WEBHOOK }}
         run: |
           find -type f
           gh release upload -R "$REPOSITORY" "$TAG" \
             go-vendor-tools.toml \
             astartectl-*-vendor.tar.bz2
+          curl -X POST "$WEBHOOK"
