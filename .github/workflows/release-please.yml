@@ -25,6 +25,6 @@ jobs:
     needs: [release-please]
     uses: ./.github/workflows/rpm-astartectl-release.yaml
     secrets: inherit
-    if: ${{ needs.release-please.steps.release.outputs."rpm/astartectl--release_created" }}
+    if: ${{ needs.release-please.steps.release.outputs['rpm/astartectl--release_created'] }}
     with:
-      tag: ${{ needs.release-please.steps.release.outputs."rpm/astartectl--tag_name" }}
+      tag: ${{ needs.release-please.steps.release.outputs['rpm/astartectl--tag_name'] }}
