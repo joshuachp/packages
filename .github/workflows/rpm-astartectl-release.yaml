@@ -73,4 +73,4 @@ jobs:
           gh release upload -R "$REPOSITORY" "$TAG" \
             go-vendor-tools.toml \
             astartectl-*-vendor.tar.bz2
-          curl -X POST "$WEBHOOK"
+          curl -X POST "$WEBHOOK/golang-astartectl"
