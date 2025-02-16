@@ -15,8 +15,16 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: googleapis/release-please-action@v4
+        id: release
         with:
-          token: ${{ secrets.RELEASE_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
           include-component-in-tag: true
+  upload-sources:
+    name: upload astartectl sources
+    needs: [release-please]
+    uses: ./.github/workflows/rpm-astartectl-release.yaml
+    secrets: inherit
+    if: ${{ needs.release-please.steps.release.outputs."rpm/astartectl--release_created" }}
+    with:
+      tag: ${{ needs.release-please.steps.release.outputs."rpm/astartectl--tag_name" }}

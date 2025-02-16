@@ -1,14 +1,17 @@
 name: rpm-astartectl-release
 on:
+  workflow_call:
+    inputs:
+      tag:
+        type: string
+        description: Tag to push the sources to
+        required: true
   workflow_dispatch:
     inputs:
       tag:
         type: string
         description: Tag to push the sources to
         required: true
-  push:
-    tags:
-      - astartectl-v*
 permissions:
   contents: read
 # Spend CI time only on latest ref
@@ -59,23 +62,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: astartectl-sources
-      - name: get release tag
-        env:
-          PUSH_EVENT: ${{ github.event.tag_name }}
-          INPUT_TAG: ${{ inputs.tag }}
-        run: |
-          if [[ -n "$INPUT_TAG" ]]; then
-            echo "TAG=$INPUT_TAG" >> "$GITHUB_ENV"
-          elif [[ -n "$PUSH_EVENT" ]]; then
-            echo "TAG=$PUSH_EVENT" >> "$GITHUB_ENV"
-          else
-            echo "Couldn't determin release tag"
-            exit 1
-          fi
       - name: upload to relase
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: ${{ github.repository }}
+          TAG: ${{ inputs.tag }}
           WEBHOOK: ${{ secrets.COPR_WEBHOOK }}
         run: |
           find -type f
