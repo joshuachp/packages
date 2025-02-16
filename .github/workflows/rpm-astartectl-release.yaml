@@ -13,7 +13,7 @@ on:
         description: Tag to push the sources to
         required: true
 permissions:
-  contents: read
+  contents: write
 # Spend CI time only on latest ref
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
