@@ -1,4 +1,4 @@
-.PHONY: srpm
+.PHONY: srpm install-deps
 
 SHELL=/usr/bin/env bash -xeuEo pipefail
 SPEC_FILE=golang-astartectl.spec
@@ -11,3 +11,5 @@ $(outdir)/$(SRPM_FILE): $(SPEC_FILE)
 	rpmbuild -bs $(SPEC_FILE)
 	cp -v ~/rpmbuild/SRPMS/$(SRPM_FILE) $(outdir)/$(SRPM_FILE)
 
+install-deps:
+	dnf -y install rpmdevtools

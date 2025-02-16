@@ -9,4 +9,5 @@ endif
 ifndef spec
 	$(error spec file is undefined)
 endif
+	$(MAKE) -f "$$(dirname $(spec))/Makefile" install-deps
 	$(MAKE) -f "$$(dirname $(spec))/Makefile" srpm
