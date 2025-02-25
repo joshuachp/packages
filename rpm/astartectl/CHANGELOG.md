@@ -1,5 +1,13 @@
 # Changelog
 
+## [24.5.2](https://github.com/joshuachp/packages/compare/astartectl-v24.5.2...astartectl-v24.5.2) (2025-02-25)
+
+
+### Bug Fixes
+
+* **copr:** install spectool to dowload sources ([4ce1e1e](https://github.com/joshuachp/packages/commit/4ce1e1e5865286538d842e378f35510a7adec8ee))
+* **Make:** get topdir dynamically ([33b2fb8](https://github.com/joshuachp/packages/commit/33b2fb86411b546bed3f4edd87334ac2fc5f0655))
+
 ## [24.5.2](https://github.com/joshuachp/packages/compare/astartectl-v24.5.2...astartectl-v24.5.2) (2025-02-16)
 
 ### Features
