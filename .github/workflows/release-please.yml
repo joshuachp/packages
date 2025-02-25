@@ -42,3 +42,13 @@ jobs:
     if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/cargo-nextest--release_created'] }}
     with:
       tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/cargo-nextest--tag_name'] }}
+  release-atuin:
+    name: run atuin release
+    needs: [release-please]
+    uses: ./.github/workflows/rpm-atuin-release.yaml
+    secrets: inherit
+    permissions:
+      contents: write
+    if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/atuin--release_created'] }}
+    with:
+      tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/atuin--tag_name'] }}

@@ -11,6 +11,11 @@
       "package-name": "cargo-nextest",
       "release-type": "simple",
       "release-as": "0.9.92"
+    },
+    "rpm/atuin": {
+      "package-name": "atuin",
+      "release-type": "simple",
+      "release-as": "18.4.0"
     }
   }
 }
