@@ -23,12 +23,18 @@ jobs:
           manifest-file: .release-please-manifest.json
           include-component-in-tag: true
   upload-sources:
-    name: upload astartectl sources
+    name: run ${{ matrix.package }} release
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - astartectl
+          - cargo-nextest
     needs: [release-please]
-    uses: ./.github/workflows/rpm-astartectl-release.yaml
+    uses: ./.github/workflows/rpm-${{ matrix.package }}-release.yaml
     secrets: inherit
     permissions:
       contents: write
-    if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/astartectl--release_created'] }}
+    if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/${{ matrix.release }}--release_created'] }}
     with:
-      tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/astartectl--tag_name'] }}
+      tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/${{ matrix.release }}--tag_name'] }}
