@@ -53,4 +53,4 @@ jobs:
         env:
           WEBHOOK: ${{ secrets.COPR_WEBHOOK }}
         run: |
-          curl -X POST "$WEBHOOK/cargo-nextest"
+          curl -X POST "$WEBHOOK/rust-cargo-nextest"
