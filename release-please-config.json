@@ -5,6 +5,11 @@
       "package-name": "astartectl",
       "release-type": "simple",
       "release-as": "24.5.2"
+    },
+    "rpm/cargo-nextest": {
+      "package-name": "cargo-nextest",
+      "release-type": "simple",
+      "release-as": "0.9.92"
     }
   }
 }
