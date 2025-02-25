@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: install dependencies
         run: |
-          dnf install -y fedora-packager git
+          dnf install -y fedora-packager git make
       - uses: actions/checkout@v4
         with:
           set-safe-directory: true
