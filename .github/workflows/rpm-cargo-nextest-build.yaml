@@ -1,0 +1,56 @@
+name: rpm-cargo-nextest-build
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/rpm-cargo-nextest-build.yaml"
+      - "rpm/cargo-nextest/Makefile"
+      - "rpm/cargo-nextest/rust2rpm.toml"
+      - "rpm/cargo-nextest/rust-cargo-nextest.toml"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/rpm-cargo-nextest-build.yaml"
+      - "rpm/cargo-nextest/Makefile"
+      - "rpm/cargo-nextest/rust2rpm.toml"
+      - "rpm/cargo-nextest/rust-cargo-nextest.spec"
+permissions:
+  contents: read
+# Spend CI time only on latest ref
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container:
+      image: fedora:41
+    steps:
+      - name: install dependencies
+        run: |
+          dnf install -y fedora-packager git
+      - uses: actions/checkout@v4
+        with:
+          set-safe-directory: true
+      - run: |
+          cd rpm/cargo-nextest
+          make install-deps
+      # BUG: fixes permission in GitHub actions container
+      - name: set safe git directory
+        run: |
+          git config --system --add safe.directory "$PWD"
+      - name: build the rpm
+        run: |
+          rpmdev-setuptree
+          cd rpm/cargo-nextest
+          make build
+          CHANGED="$(git status -u --porcelain)"
+          if [[ -n "$CHANGED" ]]; then
+            git diff
+            echo "file changed"
+            exit 1
+          fi
