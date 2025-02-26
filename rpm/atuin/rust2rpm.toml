@@ -14,7 +14,7 @@ install.post = ['''''']
 
 [features]
 enable = []
-disable-default = true
+disable-default = false
 enable-all = false
 hide = []
 
