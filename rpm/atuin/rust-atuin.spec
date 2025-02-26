@@ -48,18 +48,18 @@ find ./vendor -type f -executable -name '*.rs' -exec chmod -x '{}' \;
 
 
 %build
-%cargo_build -n
-%{cargo_license_summary -n}
-%{cargo_license -n} > LICENSE.dependencies
+%cargo_build
+%{cargo_license_summary}
+%{cargo_license} > LICENSE.dependencies
 %{cargo_vendor_manifest}
 
 %install
-%cargo_install -n
+%cargo_install
 
 
 %if %{with check}
 %check
-%cargo_test -n
+%cargo_test
 %endif
 
 %changelog
