@@ -39,7 +39,7 @@ sources: $(CRATE) $(VENDOR)
 $(RPMS): $(SRPM)
 	rpmbuild -bb $(SPECFILE)
 
-$(SRPM): $(SPECFILE) $(CRATE) $(VENDOR)
+$(SRPM): $(SPECFILE) $(CRATE) $(VENDOR) $(PATCH)
 	rpmbuild -bs $(SPECFILE)
 
 $(SPECFILE) $(CRATE) $(VENDOR) $(PATCH): rust2rpm.toml
@@ -50,8 +50,8 @@ $(SPECFILE) $(CRATE) $(VENDOR) $(PATCH): rust2rpm.toml
 
 .PHONY: clean install-deps
 clean:
-	rm -v *-vendor.tar.xz *.crate *.diff
-	rm -v $(CRATE) $(VENDOR) $(PATCH) $(SRPM) $(RPMS)
+	rm -v *-vendor.tar.xz *.crate *.diff || true
+	rm -v $(CRATE) $(VENDOR) $(PATCH) $(SRPM) $(RPMS) || true
 
 install-deps:
 	dnf -y install rpmdevtools rust2rpm
