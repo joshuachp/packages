@@ -52,5 +52,5 @@ clean:
 	rm -v $(CRATE) $(VENDOR) $(SRPM) $(RPMS)
 
 install-deps:
-	dnf -y install rpmdevtools rust2rpm
+	dnf -y install rpmdevtools rust2rpm rust2rpm-helper
 
