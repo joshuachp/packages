@@ -8,14 +8,14 @@
 %global crate jj-cli
 
 Name:           rust-jj-cli
-Version:        0.26.0
+Version:        0.27.0
 Release:        %autorelease
 Summary:        Jujutsu - an experimental version control system
 
 License:        Apache-2.0
 URL:            https://crates.io/crates/jj-cli
 Source:         %{crates_source}
-Source:         jj-cli-0.26.0-vendor.tar.xz
+Source:         jj-cli-0.27.0-vendor.tar.xz
 
 BuildRequires:  cargo-rpm-macros >= 26
 BuildRequires:  pkgconfig(openssl)
@@ -44,7 +44,9 @@ License:        # FIXME
 %{_bindir}/fake-editor
 %{_bindir}/fake-formatter
 %{_bindir}/jj
-%{_datadir}/fish/vendor_completions.d/jj.fish
+%{bash_completions_dir}/jj.bash
+%{fish_completions_dir}/jj.fish
+%{zsh_completions_dir}/_jj
 
 %prep
 %autosetup -n %{crate}-%{version} -p1 -a1
@@ -60,9 +62,13 @@ License:        # FIXME
 
 %install
 %cargo_install -f packaging,test-fakes
-mkdir -p "$RPM_BUILD_ROOT%{_datadir}/fish/vendor_completions.d"
-COMPLETE=fish "$RPM_BUILD_ROOT%{_bindir}/jj" |
-    sed -e "s|$RPM_BUILD_ROOT||g" > "$RPM_BUILD_ROOT%{_datadir}/fish/vendor_completions.d/jj.fish"
+COMPLETE=bash "%{buidroot}%{_bindir}/jj" > jj.bash
+COMPLETE=fish "%{buildroot}%{_bindir}/jj" > jj.fish
+COMPLETE=zsh "%{buildroot}%{_bindir}/jj" > _jj
+sed -i -e 's|%{buildroot}||g' jj.bash jj.fish _jj
+install -Dpm 0644 jj.bash -t %{buildroot}%{bash_completions_dir}
+install -Dpm 0644 jj.fish -t %{buildroot}%{fish_completions_dir}
+install -Dpm 0644 _jj -t %{buildroot}%{zsh_completions_dir}
 
 
 %if %{with check}

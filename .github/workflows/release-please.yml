@@ -52,3 +52,13 @@ jobs:
     if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/atuin--release_created'] }}
     with:
       tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/atuin--tag_name'] }}
+  release-jj-cli:
+    name: run jj-cli release
+    needs: [release-please]
+    uses: ./.github/workflows/rpm-jj-cli-release.yaml
+    secrets: inherit
+    permissions:
+      contents: write
+    if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/jj-cli--release_created'] }}
+    with:
+      tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/jj-cli--tag_name'] }}
