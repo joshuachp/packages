@@ -16,12 +16,12 @@ build = [
 prep.post = [
   # Fix shebangs in rust files
   '''
-    find ./vendor -type f -executable -name '*.rs' -exec chmod -x '{}' \;
-    ''',
+find ./vendor -type f -executable -name '*.rs' -exec chmod -x '{}' \;
+''',
 ]
 install.post = [
   '''
-COMPLETE=bash "%{buidroot}%{_bindir}/jj" > jj.bash
+COMPLETE=bash "%{buildroot}%{_bindir}/jj" > jj.bash
 COMPLETE=fish "%{buildroot}%{_bindir}/jj" > jj.fish
 COMPLETE=zsh "%{buildroot}%{_bindir}/jj" > _jj
 sed -i -e 's|%{buildroot}||g' jj.bash jj.fish _jj
