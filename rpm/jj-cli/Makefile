@@ -53,6 +53,5 @@ clean:
 	rm -v $(CRATE) $(VENDOR) $(PATCH) $(SRPM) $(RPMS) || true
 
 install-deps:
-	dnf -y install dnf-plugins-core rpmdevtools rust2rpm rust2rpm-helper
-	dnf builddep -y $(SPECFILE)
+	dnf -y install rpmdevtools rust2rpm rust2rpm-helper pkgconf cmake openssl-devel zlib-ng-compat-devel
 
