@@ -51,8 +51,8 @@ License:        # FIXME
 %prep
 %autosetup -n %{crate}-%{version} -p1 -a1
 %cargo_prep -v vendor
-    find ./vendor -type f -executable -name '*.rs' -exec chmod -x '{}' \;
-    
+find ./vendor -type f -executable -name '*.rs' -exec chmod -x '{}' \;
+
 
 %build
 %cargo_build -f packaging,test-fakes
@@ -62,7 +62,7 @@ License:        # FIXME
 
 %install
 %cargo_install -f packaging,test-fakes
-COMPLETE=bash "%{buidroot}%{_bindir}/jj" > jj.bash
+COMPLETE=bash "%{buildroot}%{_bindir}/jj" > jj.bash
 COMPLETE=fish "%{buildroot}%{_bindir}/jj" > jj.fish
 COMPLETE=zsh "%{buildroot}%{_bindir}/jj" > _jj
 sed -i -e 's|%{buildroot}||g' jj.bash jj.fish _jj
