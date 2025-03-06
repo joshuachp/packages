@@ -54,4 +54,5 @@ clean:
 
 install-deps:
 	dnf -y install rpmdevtools rust2rpm rust2rpm-helper
+	dnf builddep $(SPECFILE)
 
