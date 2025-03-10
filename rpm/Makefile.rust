@@ -11,20 +11,20 @@ SOURCE_DIR ?= $(TOPDIR)/SOURCES
 
 SPECFILE := rust-$(NAME).spec
 
-VERSION := $(shell rpmspec --query $(SPECFILE) --queryformat '%{version}\n' | head -n1)
-RELEASE := $(shell rpmspec --query $(SPECFILE) --queryformat '%{release}\n' | head -n1)
+VERSION := $(shell rpmspec --query $(SPECFILE) --queryformat '%{version}\n' | head -n1 | tee)
+RELEASE := $(shell rpmspec --query $(SPECFILE) --queryformat '%{release}\n' | head -n1 | tee)
 
 TMPDIR := $(shell mktemp -d)
 
 # Overwritten in sources
 CRATE_FILE := $(NAME)-$(VERSION).crate
-CRATE := $(SOURCE_DIR)/$(CRATE)
+CRATE := $(SOURCE_DIR)/$(CRATE_FILE)
 VENDOR_FILE :=$(NAME)-$(VERSION)-vendor.tar.xz
-VENDOR := $(SOURCE_DIR)/$(VENDOR)
+VENDOR := $(SOURCE_DIR)/$(VENDOR_FILE)
 
 ifdef hasdiff
 DIFF_FILE := $(NAME)-fix-metadata-auto.diff
-DIFF := $(SOURCE_DIR)/$(DIFF)
+DIFF := $(SOURCE_DIR)/$(DIFF_FILE)
 endif
 
 SRPM := $(TOPDIR)/SRPMS/rust-$(NAME)-$(VERSION)-$(RELEASE).src.rpm
