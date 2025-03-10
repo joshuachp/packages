@@ -62,3 +62,13 @@ jobs:
     if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/jj-cli--release_created'] }}
     with:
       tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/jj-cli--tag_name'] }}
+  release-sccache:
+    name: run sccache release
+    needs: [release-please]
+    uses: ./.github/workflows/rpm-sccache-release.yaml
+    secrets: inherit
+    permissions:
+      contents: write
+    if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/sccache--release_created'] }}
+    with:
+      tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/sccache--tag_name'] }}

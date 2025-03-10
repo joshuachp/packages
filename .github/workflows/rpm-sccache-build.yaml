@@ -1,0 +1,56 @@
+name: rpm-sccache-build
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/rpm-sccache-build.yaml"
+      - "rpm/sccache/Makefile"
+      - "rpm/sccache/rust2rpm.toml"
+      - "rpm/sccache/rust-sccache.toml"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/rpm-sccache-build.yaml"
+      - "rpm/sccache/Makefile"
+      - "rpm/sccache/rust2rpm.toml"
+      - "rpm/sccache/rust-sccache.spec"
+permissions:
+  contents: read
+# Spend CI time only on latest ref
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container:
+      image: fedora:41
+    steps:
+      - name: install dependencies
+        run: |
+          dnf install -y fedora-packager git make
+      - uses: actions/checkout@v4
+        with:
+          set-safe-directory: true
+      - run: |
+          cd rpm/sccache
+          make install-deps
+      # BUG: fixes permission in GitHub actions container
+      - name: set safe git directory
+        run: |
+          git config --system --add safe.directory "$PWD"
+      - name: build the rpm
+        run: |
+          rpmdev-setuptree
+          cd rpm/sccache
+          make build
+          CHANGED="$(git status -u --porcelain)"
+          if [[ -n "$CHANGED" ]]; then
+            git diff
+            echo "file changed"
+            exit 1
+          fi

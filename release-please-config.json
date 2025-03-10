@@ -21,6 +21,11 @@
       "package-name": "jj-cli",
       "release-type": "simple",
       "release-as": "0.27.0"
+    },
+    "rpm/sccache": {
+      "package-name": "sccache",
+      "release-type": "simple",
+      "release-as": "0.10.0"
     }
   }
 }
