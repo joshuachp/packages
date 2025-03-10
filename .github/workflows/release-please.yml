@@ -39,9 +39,9 @@ jobs:
           - name: sccache
             package: rust-sccache
       fail-fast: false
-    if: ${{ fromJSON(needs.release-please.outputs.release)[format('rpm/{0}--release_created', matrix.rpm.name)] }}
     uses: ./.github/workflows/rpm-release.yaml
     secrets: inherit
     with:
       name: ${{ matrix.rpm.name }}
       package: ${{ matrix.rpm.package }}
+      release: needs.release-please.outputs.release

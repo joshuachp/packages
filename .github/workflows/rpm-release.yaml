@@ -10,6 +10,11 @@ on:
         type: string
         description: Name of the package to publish
         required: true
+      release:
+        type: string
+        description: JSON returned by release-please
+        # not required if run manually
+        required: false
   workflow_call:
     inputs:
       name:
@@ -19,6 +24,10 @@ on:
       package:
         type: string
         description: Name of the package to publish
+        required: true
+      release:
+        type: string
+        description: JSON returned by release-please
         required: true
 permissions:
   contents: write
@@ -34,6 +43,7 @@ env:
   PACKAGE: ${{ inputs.package }}
 jobs:
   release:
+    if: ${{ inuts.release == null || fromJSON(inputs.release)[format('rpm/{0}--release_created', inputs.name)] }}
     runs-on: ubuntu-24.04
     container:
       image: fedora:41
