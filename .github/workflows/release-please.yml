@@ -23,7 +23,7 @@ jobs:
           manifest-file: .release-please-manifest.json
           include-component-in-tag: true
   release-rpm:
-    name: run ${{ matrix.name }} release
+    name: run ${{ matrix.rpm.name }} release
     needs: [release-please]
     strategy:
       matrix:
