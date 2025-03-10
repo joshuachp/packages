@@ -1,4 +1,4 @@
-NAME := jj-cli
+NAME := dprint
 
 include ../Makefile.rust
 

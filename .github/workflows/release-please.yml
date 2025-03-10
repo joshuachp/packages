@@ -22,53 +22,26 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
           include-component-in-tag: true
-  release-astartectl:
-    name: run astartectl release
+  release-rpm:
+    name: run ${{ matrix.name }} release
     needs: [release-please]
-    uses: ./.github/workflows/rpm-astartectl-release.yaml
+    strategy:
+      matrix:
+        rpm:
+          - name: astartectl
+            package: golang-astartectl
+          - name: atuin
+            package: rust-atuin
+          - name: cargo-nextest
+            package: rust-cargo-nextest
+          - name: jj-cli
+            package: rust-jj-cli
+          - name: sccache
+            package: rust-sccache
+      fail-fast: false
+    if: ${{ fromJSON(needs.release-please.outputs.release)[join(['rpm/', matrix.rpm.name, '--release_created')] }}
+    uses: ./.github/workflows/rpm-release.yaml
     secrets: inherit
-    permissions:
-      contents: write
-    if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/astartectl--release_created'] }}
     with:
-      tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/astartectl--tag_name'] }}
-  release-cargo-nextest:
-    name: run cargo-nextest release
-    needs: [release-please]
-    uses: ./.github/workflows/rpm-cargo-nextest-release.yaml
-    secrets: inherit
-    permissions:
-      contents: write
-    if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/cargo-nextest--release_created'] }}
-    with:
-      tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/cargo-nextest--tag_name'] }}
-  release-atuin:
-    name: run atuin release
-    needs: [release-please]
-    uses: ./.github/workflows/rpm-atuin-release.yaml
-    secrets: inherit
-    permissions:
-      contents: write
-    if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/atuin--release_created'] }}
-    with:
-      tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/atuin--tag_name'] }}
-  release-jj-cli:
-    name: run jj-cli release
-    needs: [release-please]
-    uses: ./.github/workflows/rpm-jj-cli-release.yaml
-    secrets: inherit
-    permissions:
-      contents: write
-    if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/jj-cli--release_created'] }}
-    with:
-      tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/jj-cli--tag_name'] }}
-  release-sccache:
-    name: run sccache release
-    needs: [release-please]
-    uses: ./.github/workflows/rpm-sccache-release.yaml
-    secrets: inherit
-    permissions:
-      contents: write
-    if: ${{ fromJSON(needs.release-please.outputs.release)['rpm/sccache--release_created'] }}
-    with:
-      tag: ${{ fromJson(needs.release-please.outputs.release)['rpm/sccache--tag_name'] }}
+      name: ${{ matrix.rpm.name }}
+      package: ${{ matrix.rpm.package }}

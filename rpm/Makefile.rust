@@ -1,0 +1,65 @@
+SHELL = /usr/bin/env bash -xeuEo pipefail
+
+ifndef NAME
+	$(error NAME is undefined)
+endif
+
+ARCH := $(shell uname -m)
+
+TOPDIR := $(shell rpmspec -E '%{_topdir}')
+SOURCE_DIR ?= $(TOPDIR)/SOURCES
+
+SPECFILE := rust-$(NAME).spec
+
+VERSION := $(shell rpmspec --query $(SPECFILE) --queryformat '%{version}\n' | head -n1)
+RELEASE := $(shell rpmspec --query $(SPECFILE) --queryformat '%{release}\n' | head -n1)
+
+TMPDIR := $(shell mktemp -d)
+
+# Overwritten in sources
+CRATE_FILE := $(NAME)-$(VERSION).crate
+CRATE := $(SOURCE_DIR)/$(CRATE)
+VENDOR_FILE :=$(NAME)-$(VERSION)-vendor.tar.xz
+VENDOR := $(SOURCE_DIR)/$(VENDOR)
+
+ifdef hasdiff
+DIFF_FILE := $(NAME)-fix-metadata-auto.diff
+DIFF := $(SOURCE_DIR)/$(DIFF)
+endif
+
+SRPM := $(TOPDIR)/SRPMS/rust-$(NAME)-$(VERSION)-$(RELEASE).src.rpm
+RPMS := $(TOPDIR)/RPMS/$(ARCH)/rust-$(NAME)-$(VERSION)-$(RELEASE).$(ARCH).rpm \
+	$(TOPDIR)/RPMS/$(ARCH)/$(NAME)-$(VERSION)-$(RELEASE).$(ARCH).rpm \
+	$(TOPDIR)/RPMS/$(ARCH)/rust-$(NAME)-debugsource-$(VERSION)-$(RELEASE).$(ARCH).rpm \
+	$(TOPDIR)/RPMS/$(ARCH)/$(NAME)-debuginfo-$(VERSION)-$(RELEASE).$(ARCH).rpm
+
+.PHONY: build rpm srpm sources
+
+build: $(RPMS)
+
+srpm: $(SRPM)
+ifdef outdir
+	cp -v $(SRPM) $(outdir)
+endif
+
+sources: $(CRATE) $(VENDOR)
+
+$(RPMS): $(SRPM)
+	rpmbuild -bb $(SPECFILE)
+
+
+$(SRPM): $(SPECFILE) $(CRATE) $(VENDOR) $(DIFF)
+	rpmbuild -bs $(SPECFILE)
+
+$(SPECFILE) $(CRATE) $(VENDOR) $(DIFF): rust2rpm.toml
+	rust2rpm -s -t fedora -V auto -C rust2rpm.toml $(NAME)
+	cp -v $(CRATE_FILE) $(SOURCE_DIR)
+	cp -v $(VENDOR_FILE) $(SOURCE_DIR)
+ifdef hasdiff
+	cp -v $(DIFF_FILE) $(SOURCE_DIR)
+endif
+
+.PHONY: clean
+clean:
+	rm -v $(CRATE_FILE) $(VENDOR_FILE) $(DIFF_FILE) || true
+	rm -v $(CRATE) $(VENDOR) $(DIFF) $(SRPM) $(RPMS) || true

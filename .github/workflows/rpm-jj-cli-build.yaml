@@ -26,31 +26,7 @@ defaults:
     shell: bash
 jobs:
   build:
-    runs-on: ubuntu-24.04
-    container:
-      image: fedora:41
-    steps:
-      - name: install dependencies
-        run: |
-          dnf install -y fedora-packager git make
-      - uses: actions/checkout@v4
-        with:
-          set-safe-directory: true
-      - run: |
-          cd rpm/jj-cli
-          make install-deps
-      # BUG: fixes permission in GitHub actions container
-      - name: set safe git directory
-        run: |
-          git config --system --add safe.directory "$PWD"
-      - name: build the rpm
-        run: |
-          rpmdev-setuptree
-          cd rpm/jj-cli
-          make build
-          CHANGED="$(git status -u --porcelain)"
-          if [[ -n "$CHANGED" ]]; then
-            git diff
-            echo "file changed"
-            exit 1
-          fi
+    uses: ./.github/workflows/rpm-build.yaml
+    secrets: inherit
+    with:
+      name: jj-cli

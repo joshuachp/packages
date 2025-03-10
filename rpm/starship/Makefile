@@ -1,4 +1,4 @@
-NAME := sccache
+NAME := starship
 hasdiff := true
 
 include ../Makefile.rust
