@@ -44,4 +44,4 @@ jobs:
     with:
       name: ${{ matrix.rpm.name }}
       package: ${{ matrix.rpm.package }}
-      release: needs.release-please.outputs.release
+      release: ${{ needs.release-please.outputs.release }}

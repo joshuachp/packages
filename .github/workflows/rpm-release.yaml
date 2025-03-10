@@ -33,7 +33,7 @@ permissions:
   contents: write
 # Spend CI time only on latest ref
 concurrency:
-  group: ${{ github.workflow }}-release-${{ github.head_ref || github.run_id }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 defaults:
   run:
@@ -44,6 +44,7 @@ env:
 jobs:
   release:
     if: ${{ inputs.release == null || fromJSON(inputs.release)[format('rpm/{0}--release_created', inputs.name)] }}
+    name: relase ${{ inputs.name }}
     runs-on: ubuntu-24.04
     container:
       image: fedora:41
