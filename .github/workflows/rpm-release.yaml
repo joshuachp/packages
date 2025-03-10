@@ -43,7 +43,7 @@ env:
   PACKAGE: ${{ inputs.package }}
 jobs:
   release:
-    if: ${{ inuts.release == null || fromJSON(inputs.release)[format('rpm/{0}--release_created', inputs.name)] }}
+    if: ${{ inputs.release == null || fromJSON(inputs.release)[format('rpm/{0}--release_created', inputs.name)] }}
     runs-on: ubuntu-24.04
     container:
       image: fedora:41
