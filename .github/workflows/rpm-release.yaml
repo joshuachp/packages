@@ -40,7 +40,7 @@ env:
 jobs:
   release:
     if: ${{ inputs.release == null || fromJSON(inputs.release)[format('rpm/{0}--release_created', inputs.name)] }}
-    name: relase ${{ inputs.name }}
+    name: release ${{ inputs.name }}
     runs-on: ubuntu-24.04
     container:
       image: fedora:41
