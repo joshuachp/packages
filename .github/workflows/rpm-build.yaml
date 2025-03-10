@@ -14,10 +14,6 @@ on:
         description: Package to build
 permissions:
   contents: read
-# Spend CI time only on latest ref
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
 defaults:
   run:
     shell: bash
@@ -28,6 +24,7 @@ jobs:
     runs-on: ubuntu-24.04
     container:
       image: fedora:41
+    name: build ${{ inputs.name }}
     steps:
       - name: install dependencies
         run: |
