@@ -1,28 +1,30 @@
-name: rpm-cargo-nextest-release
+name: rpm-build
 on:
-  workflow_call:
-    inputs:
-      tag:
-        type: string
-        description: Tag to push the sources to
-        required: true
   workflow_dispatch:
     inputs:
-      tag:
+      name:
         type: string
-        description: Tag to push the sources to
         required: true
+        description: Package to build
+  workflow_call:
+    inputs:
+      name:
+        type: string
+        required: true
+        description: Package to build
 permissions:
-  contents: write
+  contents: read
 # Spend CI time only on latest ref
 concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  group: ${{ github.workflow }}-build-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 defaults:
   run:
     shell: bash
+env:
+  NAME: ${{ inputs.name }}
 jobs:
-  create-sources:
+  build:
     runs-on: ubuntu-24.04
     container:
       image: fedora:41
@@ -30,27 +32,24 @@ jobs:
       - name: install dependencies
         run: |
           dnf install -y fedora-packager git make
+      - name: setup build environment
+        run: rpmdev-setuptree
       - uses: actions/checkout@v4
-      # BUG: fixes permission in github actions container
+        with:
+          set-safe-directory: true
+      # BUG: fixes permission in GitHub actions container
       - name: set safe git directory
         run: |
           git config --system --add safe.directory "$PWD"
-      - run: |
-          cd rpm/cargo-nextest
-          make install-deps
-      - name: build the rpm
+      - name: install ${{ inputs.name }} build dependencies
         run: |
-          rpmdev-setuptree
-          cd rpm/cargo-nextest
-          make build
+          make -C "rpm/$NAME" install-deps
+      - name: build ${{ inputs.name }} rpm
+        run: |
+          make -C "rpm/$NAME" build
           CHANGED="$(git status -u --porcelain)"
           if [[ -n "$CHANGED" ]]; then
             git diff
             echo "file changed"
             exit 1
           fi
-      - name: call webhook
-        env:
-          WEBHOOK: ${{ secrets.COPR_WEBHOOK }}
-        run: |
-          curl -X POST "$WEBHOOK/rust-cargo-nextest"
