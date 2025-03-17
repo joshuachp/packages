@@ -26,6 +26,11 @@
       "package-name": "sccache",
       "release-type": "simple",
       "release-as": "0.10.0"
+    },
+    "rpm/cargo-edit": {
+      "package-name": "cargo-edit",
+      "release-type": "simple",
+      "release-as": "0.13.1"
     }
   }
 }
