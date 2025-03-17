@@ -38,6 +38,8 @@ jobs:
             package: rust-jj-cli
           - name: sccache
             package: rust-sccache
+          - name: cargo-edit
+            package: rust-cargo-edit
       fail-fast: false
     uses: ./.github/workflows/rpm-release.yaml
     secrets: inherit

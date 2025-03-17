@@ -1,0 +1,9 @@
+[package]
+
+[requires]
+
+[features]
+
+[tests]
+run = ["none"]
+comments = ["Doesn't compile for testutils"]

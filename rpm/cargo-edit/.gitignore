@@ -1,0 +1,4 @@
+*.crate
+*.tar.xz
+*.diff
+vendor/
