@@ -6,7 +6,7 @@ on:
       - ".github/workflows/rpm-atuin-build.yaml"
       - "rpm/atuin/Makefile"
       - "rpm/atuin/rust2rpm.toml"
-      - "rpm/atuin/rust-atuin.toml"
+      - "rpm/atuin/rust-atuin.spec"
   push:
     branches:
       - main

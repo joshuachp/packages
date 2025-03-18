@@ -1,20 +1,20 @@
-name: rpm-sccache-build
+name: rpm-dprint-build
 on:
   workflow_dispatch:
   pull_request:
     paths:
-      - ".github/workflows/rpm-sccache-build.yaml"
-      - "rpm/sccache/Makefile"
-      - "rpm/sccache/rust2rpm.toml"
-      - "rpm/sccache/rust-sccache.spec"
+      - ".github/workflows/rpm-dprint-build.yaml"
+      - "rpm/dprint/Makefile"
+      - "rpm/dprint/rust2rpm.toml"
+      - "rpm/dprint/rust-sccache.spec"
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/rpm-sccache-build.yaml"
-      - "rpm/sccache/Makefile"
-      - "rpm/sccache/rust2rpm.toml"
-      - "rpm/sccache/rust-sccache.spec"
+      - ".github/workflows/rpm-dprint-build.yaml"
+      - "rpm/dprint/Makefile"
+      - "rpm/dprint/rust2rpm.toml"
+      - "rpm/dprint/rust-sccache.spec"
 permissions:
   contents: read
 # Spend CI time only on latest ref
@@ -29,4 +29,4 @@ jobs:
     uses: ./.github/workflows/rpm-build.yaml
     secrets: inherit
     with:
-      name: sccache
+      name: dprint

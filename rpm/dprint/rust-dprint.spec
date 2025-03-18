@@ -8,14 +8,14 @@
 %global crate dprint
 
 Name:           rust-dprint
-Version:        0.49.0
-Release:        2%{?dist}
+Version:        0.49.1
+Release:        %autorelease
 Summary:        Pluggable and configurable code formatting platform written in Rust.
 
 License:        MIT
 URL:            https://crates.io/crates/dprint
 Source:         %{crates_source}
-Source:         dprint-0.49.0-vendor.tar.xz
+Source:         dprint-0.49.1-vendor.tar.xz
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          dprint-fix-metadata-auto.diff
 
@@ -40,7 +40,9 @@ License:        # FIXME
 %license LICENSE.dependencies
 %license cargo-vendor.txt
 %{_bindir}/dprint
-%{fish_completions_dir}/fish/vendor_completions.d/dprint.fish
+%{bash_completions_dir}/dprint.bash
+%{fish_completions_dir}/dprint.fish
+%{zsh_completions_dir}/_dprint
 
 %prep
 %autosetup -n %{crate}-%{version} -p1 -a1
@@ -56,8 +58,12 @@ find ./vendor -type f -executable -name '*.rs' -exec chmod -x '{}' \;
 
 %install
 %cargo_install
-mkdir -p "$RPM_BUILD_ROOT%{_datadir}/fish/vendor_completions.d"
-"$RPM_BUILD_ROOT%{_bindir}/dprint" completions fish > "$RPM_BUILD_ROOT%{_datadir}/fish/vendor_completions.d/dprint.fish"
+"%{buildroot}%{_bindir}/dprint" completions bash > dprint.bash
+"%{buildroot}%{_bindir}/dprint" completions fish > dprint.fish
+"%{buildroot}%{_bindir}/dprint" completions zsh > _dprint
+install -Dpm 0644 dprint.bash -t %{buildroot}%{bash_completions_dir}
+install -Dpm 0644 dprint.fish -t %{buildroot}%{fish_completions_dir}
+install -Dpm 0644 _dprint -t %{buildroot}%{zsh_completions_dir}
 
 
 %if %{with check}
