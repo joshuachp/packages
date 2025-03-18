@@ -1,5 +1,7 @@
 NAME := dprint
 
+hasdiff := true
+
 include ../Makefile.rust
 
 .PHONY: install-deps
