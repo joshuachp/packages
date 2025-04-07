@@ -8,14 +8,14 @@
 %global crate jj-cli
 
 Name:           rust-jj-cli
-Version:        0.28.1
+Version:        0.28.2
 Release:        %autorelease
 Summary:        Jujutsu - an experimental version control system
 
 License:        Apache-2.0
 URL:            https://crates.io/crates/jj-cli
 Source:         %{crates_source}
-Source:         jj-cli-0.28.1-vendor.tar.xz
+Source:         jj-cli-0.28.2-vendor.tar.xz
 
 BuildRequires:  cargo-rpm-macros >= 26
 BuildRequires:  pkgconfig(openssl)
