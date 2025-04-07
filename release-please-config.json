@@ -20,7 +20,7 @@
     "rpm/jj-cli": {
       "package-name": "jj-cli",
       "release-type": "simple",
-      "release-as": "0.28.1"
+      "release-as": "0.28.2"
     },
     "rpm/sccache": {
       "package-name": "sccache",
