@@ -16,7 +16,7 @@ install.post = [
   '''
 %{buildroot}/%{_bindir}/starship completions bash > starship.bash
 %{buildroot}/%{_bindir}/starship completions fish > starship.fish
-%{buildroot}/%{_bindir}/starship completions zsh > starship.zsh
+%{buildroot}/%{_bindir}/starship completions zsh > _starship
 install -Dpm 0644 starship.bash -t %{buildroot}%{bash_completions_dir}
 install -Dpm 0644 starship.fish -t %{buildroot}%{fish_completions_dir}
 install -Dpm 0644 _starship -t %{buildroot}%{zsh_completions_dir}
