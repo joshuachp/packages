@@ -43,7 +43,9 @@ License:        # FIXME
 %license cargo-vendor.txt
 %doc README.md
 %{_bindir}/starship
-%{_datadir}/fish/vendor_completions.d/starship.fish
+%{bash_completions_dir}/starship.bash
+%{fish_completions_dir}/starship.fish
+%{zsh_completions_dir}/_starship
 
 %prep
 %autosetup -n %{crate}-%{version} -p1 -a1
@@ -57,8 +59,12 @@ License:        # FIXME
 
 %install
 %cargo_install
-mkdir -p $RPM_BUILD_ROOT/%{_datadir}/fish/vendor_completions.d
-$RPM_BUILD_ROOT/%{_bindir}/starship completions fish > $RPM_BUILD_ROOT/%{_datadir}/fish/vendor_completions.d/starship.fish
+%{buildroot}/%{_bindir}/starship completions bash > starship.bash
+%{buildroot}/%{_bindir}/starship completions fish > starship.fish
+%{buildroot}/%{_bindir}/starship completions zsh > _starship
+install -Dpm 0644 starship.bash -t %{buildroot}%{bash_completions_dir}
+install -Dpm 0644 starship.fish -t %{buildroot}%{fish_completions_dir}
+install -Dpm 0644 _starship -t %{buildroot}%{zsh_completions_dir}
 
 
 %if %{with check}

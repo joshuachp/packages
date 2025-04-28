@@ -36,6 +36,11 @@
       "package-name": "dprint",
       "release-type": "simple",
       "release-as": "0.49.1"
+    },
+    "rpm/starship": {
+      "package-name": "starship",
+      "release-type": "simple",
+      "release-as": "1.22.1"
     }
   }
 }
