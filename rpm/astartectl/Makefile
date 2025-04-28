@@ -2,7 +2,6 @@ SHELL = /usr/bin/env bash -xeuEo pipefail
 
 NAME := astartectl
 REPO := github.com/astarte-platform/astartectl
-LICENCE := Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND ISC AND MIT AND MPL-2.0
 
 ARCH := $(shell uname -m)
 
@@ -47,9 +46,8 @@ $(SRPM): $(SPECFILE) $(GOVENDOR) $(VENDOR) $(SRC)
 	rpmbuild -bs $(SPECFILE)
 
 $(SPECFILE) $(GOVENDOR) $(VENDOR) $(SRC):
-	go2rpm -p=vendor --name 'golang-$(NAME)' $(REPO)
+	go2rpm -p=vendor --name 'golang-$(NAME)' --version "$(VERSION)" $(REPO)
 	# Fill params
-	sed -i -e "s/\(License: \+\).\+$$/\1$(LICENCE)/" $(SPECFILE)
 	sed -i -e '/%autopatch/d' $(SPECFILE)
 	# fix cmd dir
 	sed -i -e '/for cmd/,+2d' $(SPECFILE)
@@ -64,7 +62,7 @@ $(SPECFILE) $(GOVENDOR) $(VENDOR) $(SRC):
 	sed -i -e '/%files/a %{zsh_completions_dir}/_astartectl' $(SPECFILE)
 	sed -i -e '/%files/a %{fish_completions_dir}/astartectl.fish' $(SPECFILE)
 	sed -i -e '/%files/a %{bash_completions_dir}/astartectl.bash' $(SPECFILE)
-	# Copy 
+	# Copy
 	cp -v $(GOVENDOR_FILE) $(SOURCE_DIR)
 	cp -v $(VENDOR_FILE) $(SOURCE_DIR)
 	cp -v $(SRC_FILE) $(SOURCE_DIR)
@@ -77,3 +75,12 @@ clean:
 .PHONY: install-deps
 install-deps:
 	dnf -y install rpmdevtools go2rpm+vendor
+
+.PHONY: name-version
+name-version:
+	@echo $(NAME) $(VERSION)
+
+.PHONY: update
+update:
+	# This errors
+	go2rpm -p=vendor --name 'golang-$(NAME)' $(REPO)

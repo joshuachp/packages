@@ -52,7 +52,7 @@ $(SRPM): $(SPECFILE) $(CRATE) $(VENDOR) $(DIFF)
 	rpmbuild -bs $(SPECFILE)
 
 $(SPECFILE) $(CRATE) $(VENDOR) $(DIFF): rust2rpm.toml
-	rust2rpm -s -t fedora -V auto -C rust2rpm.toml $(NAME)
+	rust2rpm -s -t fedora -V auto -C rust2rpm.toml $(NAME)@$(VERSION)
 	cp -v $(CRATE_FILE) $(SOURCE_DIR)
 	cp -v $(VENDOR_FILE) $(SOURCE_DIR)
 ifdef hasdiff
@@ -63,3 +63,11 @@ endif
 clean:
 	rm -v $(CRATE_FILE) $(VENDOR_FILE) $(DIFF_FILE) || true
 	rm -v $(CRATE) $(VENDOR) $(DIFF) $(SRPM) $(RPMS) || true
+
+.PHONY: name-version
+name-version:
+	@echo $(NAME) $(VERSION)
+
+.PHONY: update
+update:
+	rust2rpm -s -t fedora -V auto -C rust2rpm.toml $(NAME)
