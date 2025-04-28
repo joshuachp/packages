@@ -32,16 +32,16 @@ jobs:
             package: golang-astartectl
           - name: atuin
             package: rust-atuin
+          - name: cargo-edit
+            package: rust-cargo-edit
           - name: cargo-nextest
             package: rust-cargo-nextest
+          - name: dprint
+            package: rust-dprint
           - name: jj-cli
             package: rust-jj-cli
           - name: sccache
             package: rust-sccache
-          - name: cargo-edit
-            package: rust-cargo-edit
-          - name: dprint
-            package: rust-dprint
           - name: starship
             package: rust-starship
       fail-fast: false

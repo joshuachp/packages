@@ -1,6 +1,6 @@
---- starship-1.22.1/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ starship-1.22.1/Cargo.toml	2025-04-20T09:55:46.617904+00:00
-@@ -273,18 +273,3 @@
+--- starship-1.23.0/Cargo.toml	1970-01-01T00:00:01+00:00
++++ starship-1.23.0/Cargo.toml	2025-04-28T09:47:14.971195+00:00
+@@ -265,22 +265,6 @@
  ]
  default-features = false
  
@@ -8,7 +8,7 @@
 -version = "0.2.0"
 -
 -[target."cfg(windows)".dependencies.windows]
--version = "0.59.0"
+-version = "0.61.0"
 -features = [
 -    "Win32_Foundation",
 -    "Win32_UI_Shell",
@@ -19,3 +19,12 @@
 -
 -[target."cfg(windows)".build-dependencies.winres]
 -version = "0.1.12"
+-
+ [profile.bench]
+ lto = "thin"
+ codegen-units = 16
+@@ -290,3 +274,4 @@
+ lto = true
+ codegen-units = 1
+ strip = true
++
