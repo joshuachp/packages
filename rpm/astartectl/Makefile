@@ -74,7 +74,7 @@ clean:
 
 .PHONY: install-deps
 install-deps:
-	dnf -y install rpmdevtools go2rpm+vendor
+	dnf -y install rpmdevtools go2rpm+all python3-specfile
 
 .PHONY: name-version
 name-version:
