@@ -1,6 +1,6 @@
 {
   "rpm/astartectl": "24.5.2",
-  "rpm/cargo-nextest": "0.9.92",
+  "rpm/cargo-nextest": "0.9.94",
   "rpm/atuin": "18.5.0",
   "rpm/jj-cli": "0.28.2",
   "rpm/sccache": "0.10.0",
