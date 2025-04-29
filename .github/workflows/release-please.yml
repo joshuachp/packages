@@ -38,6 +38,8 @@ jobs:
             package: rust-cargo-nextest
           - name: dprint
             package: rust-dprint
+          - name: eza
+            package: rust-eza
           - name: jj-cli
             package: rust-jj-cli
           - name: sccache

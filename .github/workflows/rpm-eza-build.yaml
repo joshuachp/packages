@@ -1,20 +1,20 @@
-name: rpm-dprint-build
+name: rpm-eza-build
 on:
   workflow_dispatch:
   pull_request:
     paths:
-      - ".github/workflows/rpm-dprint-build.yaml"
-      - "rpm/dprint/Makefile"
-      - "rpm/dprint/rust2rpm.toml"
-      - "rpm/dprint/rust-dprint.spec"
+      - ".github/workflows/rpm-eza-build.yaml"
+      - "rpm/eza/Makefile"
+      - "rpm/eza/rust2rpm.toml"
+      - "rpm/eza/rust-eza.spec"
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/rpm-dprint-build.yaml"
-      - "rpm/dprint/Makefile"
-      - "rpm/dprint/rust2rpm.toml"
-      - "rpm/dprint/rust-dprint.spec"
+      - ".github/workflows/rpm-eza-build.yaml"
+      - "rpm/eza/Makefile"
+      - "rpm/eza/rust2rpm.toml"
+      - "rpm/eza/rust-eza.spec"
 permissions:
   contents: read
 # Spend CI time only on latest ref
@@ -29,4 +29,4 @@ jobs:
     uses: ./.github/workflows/rpm-build.yaml
     secrets: inherit
     with:
-      name: dprint
+      name: eza
