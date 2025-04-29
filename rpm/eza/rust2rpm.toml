@@ -1,0 +1,25 @@
+[package]
+extra-files = [
+  "%{bash_completions_dir}/eza",
+  "%{fish_completions_dir}/eza.fish",
+  "%{zsh_completions_dir}/_eza",
+]
+
+[requires]
+build = []
+
+[scripts]
+install.post = [
+  '''
+install -Dpm 0644 completions/bash/eza -t %{buildroot}%{bash_completions_dir}
+install -Dpm 0644 completions/fish/eza.fish -t %{buildroot}%{fish_completions_dir}
+install -Dpm 0644 completions/zsh/_eza -t %{buildroot}%{zsh_completions_dir}
+''',
+]
+
+[features]
+enable-all = false
+
+[tests]
+run = ["none"]
+comments = ["Doesn't compile for testutils"]
