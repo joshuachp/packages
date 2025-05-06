@@ -1,0 +1,32 @@
+name: rpm-stylua-build
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/rpm-stylua-build.yaml"
+      - "rpm/stylua/Makefile"
+      - "rpm/stylua/rust2rpm.toml"
+      - "rpm/stylua/rust-stylua.spec"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/rpm-stylua-build.yaml"
+      - "rpm/stylua/Makefile"
+      - "rpm/stylua/rust2rpm.toml"
+      - "rpm/stylua/rust-stylua.spec"
+permissions:
+  contents: read
+# Spend CI time only on latest ref
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+jobs:
+  build:
+    uses: ./.github/workflows/rpm-build.yaml
+    secrets: inherit
+    with:
+      name: stylua
