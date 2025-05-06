@@ -46,6 +46,11 @@
       "package-name": "starship",
       "release-type": "simple",
       "release-as": "1.23.0"
+    },
+    "rpm/stylua": {
+      "package-name": "stylua",
+      "release-type": "simple",
+      "release-as": "2.1.0"
     }
   }
 }

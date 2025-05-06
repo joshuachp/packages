@@ -1,0 +1,10 @@
+[requires]
+build = []
+
+[features]
+enable-all = false
+enable = ["luajit"]
+
+[tests]
+run = ["none"]
+comments = ["Doesn't compile for testutils"]

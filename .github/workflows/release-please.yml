@@ -46,6 +46,8 @@ jobs:
             package: rust-sccache
           - name: starship
             package: rust-starship
+          - name: stylua
+            package: rust-stylua
       fail-fast: false
     uses: ./.github/workflows/rpm-release.yaml
     secrets: inherit
