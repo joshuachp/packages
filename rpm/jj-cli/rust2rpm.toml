@@ -8,8 +8,6 @@ extra-files = [
 [requires]
 build = [
   "pkgconfig(openssl)",
-  "pkgconfig(zlib)",
-  "cmake",
 ]
 
 [scripts]
@@ -32,7 +30,7 @@ install -Dpm 0644 _jj -t %{buildroot}%{zsh_completions_dir}
 ]
 
 [features]
-enable = ["packaging"]
+enable = []
 enable-all = false
 hide = ["test-fakes"]
 

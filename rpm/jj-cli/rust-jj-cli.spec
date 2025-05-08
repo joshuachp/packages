@@ -8,19 +8,17 @@
 %global crate jj-cli
 
 Name:           rust-jj-cli
-Version:        0.28.2
+Version:        0.29.0
 Release:        %autorelease
 Summary:        Jujutsu - an experimental version control system
 
 License:        Apache-2.0
 URL:            https://crates.io/crates/jj-cli
 Source:         %{crates_source}
-Source:         jj-cli-0.28.2-vendor.tar.xz
+Source:         jj-cli-0.29.0-vendor.tar.xz
 
 BuildRequires:  cargo-rpm-macros >= 26
 BuildRequires:  pkgconfig(openssl)
-BuildRequires:  pkgconfig(zlib)
-BuildRequires:  cmake
 
 %global _description %{expand:
 Jujutsu - an experimental version control system.}
@@ -55,13 +53,13 @@ find ./vendor -type f -executable -name '*.rs' -exec chmod -x '{}' \;
 
 
 %build
-%cargo_build -f packaging,test-fakes
-%{cargo_license_summary -f packaging,test-fakes}
-%{cargo_license -f packaging,test-fakes} > LICENSE.dependencies
+%cargo_build -f test-fakes
+%{cargo_license_summary -f test-fakes}
+%{cargo_license -f test-fakes} > LICENSE.dependencies
 %{cargo_vendor_manifest}
 
 %install
-%cargo_install -f packaging,test-fakes
+%cargo_install -f test-fakes
 COMPLETE=bash "%{buildroot}%{_bindir}/jj" > jj.bash
 COMPLETE=fish "%{buildroot}%{_bindir}/jj" > jj.fish
 COMPLETE=zsh "%{buildroot}%{_bindir}/jj" > _jj
@@ -73,7 +71,7 @@ install -Dpm 0644 _jj -t %{buildroot}%{zsh_completions_dir}
 
 %if %{with check}
 %check
-%cargo_test -f packaging,test-fakes
+%cargo_test -f test-fakes
 %endif
 
 %changelog
