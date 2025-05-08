@@ -4,7 +4,7 @@
   "rpm/cargo-edit": "0.13.2",
   "rpm/cargo-nextest": "0.9.95",
   "rpm/dprint": "0.49.1",
-  "rpm/eza": "0.21.2",
+  "rpm/eza": "0.21.3",
   "rpm/jj-cli": "0.29.0",
   "rpm/sccache": "0.10.0",
   "rpm/starship": "1.23.0",
