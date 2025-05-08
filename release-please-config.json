@@ -1,6 +1,6 @@
 {
   "$schema": "https://github.com/googleapis/release-please/raw/refs/heads/main/schemas/config.json",
-  "separate-pull-requests": true,
+  "separate-pull-requests": false,
   "packages": {
     "rpm/astartectl": {
       "package-name": "astartectl",
