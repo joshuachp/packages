@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.29.0](https://github.com/joshuachp/packages/compare/jj-cli-v0.28.2...jj-cli-v0.29.0) (2025-05-08)
+
+
+### Features
+
+* update packages ([053efb2](https://github.com/joshuachp/packages/commit/053efb265c61d1fe9b733158c6314f6f4e10af95))
+* update packages ([4f628f8](https://github.com/joshuachp/packages/commit/4f628f85afb1e46b547b90ee7928562a8fa2aecf))
+
 ## [0.28.2](https://github.com/joshuachp/packages/compare/jj-cli-v0.28.1...jj-cli-v0.28.2) (2025-04-07)
 
 
