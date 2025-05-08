@@ -8,6 +8,7 @@ extra-files = [
 [requires]
 build = [
   "pkgconfig(openssl)",
+  "pkgconfig(libgit2)",
 ]
 
 [scripts]

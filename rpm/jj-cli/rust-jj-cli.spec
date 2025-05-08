@@ -19,6 +19,7 @@ Source:         jj-cli-0.29.0-vendor.tar.xz
 
 BuildRequires:  cargo-rpm-macros >= 26
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(libgit2)
 
 %global _description %{expand:
 Jujutsu - an experimental version control system.}
