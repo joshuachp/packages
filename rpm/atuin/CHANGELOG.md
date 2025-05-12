@@ -1,5 +1,15 @@
 # Changelog
 
+## [18.6.1](https://github.com/joshuachp/packages/compare/atuin-v18.5.0...atuin-v18.6.1) (2025-05-12)
+
+
+### Features
+
+* **atuin:** trigger release ([61a1e2f](https://github.com/joshuachp/packages/commit/61a1e2fafdd26964e3c109574ecf6f5a28c36d67))
+* **atuin:** trigger release ([26511c0](https://github.com/joshuachp/packages/commit/26511c024f5436c035762d4e8dfb98c2a928f248))
+* update packages ([053efb2](https://github.com/joshuachp/packages/commit/053efb265c61d1fe9b733158c6314f6f4e10af95))
+* update packages ([4f628f8](https://github.com/joshuachp/packages/commit/4f628f85afb1e46b547b90ee7928562a8fa2aecf))
+
 ## [18.5.0](https://github.com/joshuachp/packages/compare/atuin-v18.4.0...atuin-v18.5.0) (2025-04-28)
 
 ### Features
