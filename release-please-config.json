@@ -10,7 +10,7 @@
     "rpm/apackagingtuin": {
       "package-name": "atuin",
       "release-type": "simple",
-      "release-as": "18.6.0"
+      "release-as": "18.6.1"
     },
     "rpm/cargo-edit": {
       "package-name": "cargo-edit",
