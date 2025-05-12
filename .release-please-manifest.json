@@ -1,6 +1,6 @@
 {
   "rpm/astartectl": "24.5.2",
-  "rpm/atuin": "18.5.0",
+  "rpm/atuin": "18.6.1",
   "rpm/cargo-edit": "0.13.3",
   "rpm/cargo-nextest": "0.9.95",
   "rpm/dprint": "0.49.1",
