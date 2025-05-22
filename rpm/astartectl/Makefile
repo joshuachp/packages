@@ -84,3 +84,22 @@ name-version:
 update:
 	# This errors
 	go2rpm -p=vendor --name 'golang-$(NAME)' $(REPO)
+	# Fill params
+	sed -i -e '/%autopatch/d' $(SPECFILE)
+	# fix cmd dir
+	sed -i -e '/for cmd/,+2d' $(SPECFILE)
+	# install section
+	sed -i -e '/%install/a install -Dpm 0644 _astartectl -t %{buildroot}%{zsh_completions_dir}' $(SPECFILE)
+	sed -i -e '/%install/a install -Dpm 0644 astartectl.fish -t %{buildroot}%{fish_completions_dir}' $(SPECFILE)
+	sed -i -e '/%install/a install -Dpm 0644 astartectl.bash -t %{buildroot}%{bash_completions_dir}' $(SPECFILE)
+	sed -i -e '/%install/a %{gobuilddir}/bin/astartectl completion zsh > _astartectl' $(SPECFILE)
+	sed -i -e '/%install/a %{gobuilddir}/bin/astartectl completion fish > astartectl.fish' $(SPECFILE)
+	sed -i -e '/%install/a %{gobuilddir}/bin/astartectl completion bash > astartectl.bash' $(SPECFILE)
+	# Files section
+	sed -i -e '/%files/a %{zsh_completions_dir}/_astartectl' $(SPECFILE)
+	sed -i -e '/%files/a %{fish_completions_dir}/astartectl.fish' $(SPECFILE)
+	sed -i -e '/%files/a %{bash_completions_dir}/astartectl.bash' $(SPECFILE)
+	# Copy
+	cp -v $(GOVENDOR_FILE) $(SOURCE_DIR)
+	cp -v $(VENDOR_FILE) $(SOURCE_DIR)
+	cp -v $(SRC_FILE) $(SOURCE_DIR)
