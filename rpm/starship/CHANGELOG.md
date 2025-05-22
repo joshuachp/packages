@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.23.0](https://github.com/joshuachp/packages/compare/starship-v1.23.0...starship-v1.23.0) (2025-05-22)
+
+
+### Features
+
+* **rpm:** update packages ([69d6d14](https://github.com/joshuachp/packages/commit/69d6d1419060e93f019cc3d412702c85d58e6a2f))
+* **rpm:** update packages ([36c38a6](https://github.com/joshuachp/packages/commit/36c38a6b07a9bf44a65c43a1199c6e364ce13ce6))
+* update packages ([053efb2](https://github.com/joshuachp/packages/commit/053efb265c61d1fe9b733158c6314f6f4e10af95))
+* update packages ([4f628f8](https://github.com/joshuachp/packages/commit/4f628f85afb1e46b547b90ee7928562a8fa2aecf))
+
 ## [1.23.0](https://github.com/joshuachp/packages/compare/starship-v1.23.0...starship-v1.23.0) (2025-05-12)
 
 
