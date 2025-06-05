@@ -15,12 +15,12 @@
     "rpm/cargo-edit": {
       "package-name": "cargo-edit",
       "release-type": "simple",
-      "release-as": "0.13.4"
+      "release-as": "0.13.6"
     },
     "rpm/cargo-nextest": {
       "package-name": "cargo-nextest",
       "release-type": "simple",
-      "release-as": "0.9.96"
+      "release-as": "0.9.97"
     },
     "rpm/dprint": {
       "package-name": "dprint",
@@ -35,7 +35,7 @@
     "rpm/jj-cli": {
       "package-name": "jj-cli",
       "release-type": "simple",
-      "release-as": "0.29.0"
+      "release-as": "0.30.0"
     },
     "rpm/sccache": {
       "package-name": "sccache",

@@ -8,14 +8,14 @@
 %global crate cargo-nextest
 
 Name:           rust-cargo-nextest
-Version:        0.9.96
+Version:        0.9.97
 Release:        %autorelease
 Summary:        Next-generation test runner for Rust
 
 License:        Apache-2.0 OR MIT
 URL:            https://crates.io/crates/cargo-nextest
 Source:         %{crates_source}
-Source:         cargo-nextest-0.9.96-vendor.tar.xz
+Source:         cargo-nextest-0.9.97-vendor.tar.xz
 
 BuildRequires:  cargo-rpm-macros >= 26
 
