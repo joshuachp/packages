@@ -6,7 +6,7 @@ on:
       - ".github/workflows/rpm-jj-cli-build.yaml"
       - "rpm/jj-cli/Makefile"
       - "rpm/jj-cli/rust2rpm.toml"
-      - "rpm/jj-cli/rust-cargo-nextest.spec"
+      - "rpm/jj-cli/rust-jj-cli.spec"
   push:
     branches:
       - main
@@ -14,7 +14,7 @@ on:
       - ".github/workflows/rpm-jj-cli-build.yaml"
       - "rpm/jj-cli/Makefile"
       - "rpm/jj-cli/rust2rpm.toml"
-      - "rpm/jj-cli/rust-cargo-nextest.spec"
+      - "rpm/jj-cli/rust-jj-cli.spec"
 permissions:
   contents: read
 # Spend CI time only on latest ref
