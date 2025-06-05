@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.6](https://github.com/joshuachp/packages/compare/cargo-edit-v0.13.4...cargo-edit-v0.13.6) (2025-06-05)
+
+
+### Features
+
+* **rpm:** update packages ([1e0f0ea](https://github.com/joshuachp/packages/commit/1e0f0ea15b92d3dcd99aa77bc4e71885340308cf))
+* **rpm:** update packages ([df83f9e](https://github.com/joshuachp/packages/commit/df83f9ed9ecf594499dfcdc3fd4e96c1bd5fe3f3))
+
 ## [0.13.4](https://github.com/joshuachp/packages/compare/cargo-edit-v0.13.3...cargo-edit-v0.13.4) (2025-05-22)
 
 
