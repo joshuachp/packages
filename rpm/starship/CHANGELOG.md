@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.23.0](https://github.com/joshuachp/packages/compare/starship-v1.23.0...starship-v1.23.0) (2025-07-03)
+
+
+### Features
+
+* **cargo-nextest:** update pkg ([6f3fdd7](https://github.com/joshuachp/packages/commit/6f3fdd7db0bd469619fcc55661769a6d485df0f1))
+* **cargo-nextest:** update pkg ([c7c67cd](https://github.com/joshuachp/packages/commit/c7c67cd48b24247a1fd83713489eb8c0f3a98dd6))
+* **rpm:** update packages ([22189c4](https://github.com/joshuachp/packages/commit/22189c4788091fae4de85ac6dab56ca437251ece))
+* **rpm:** update packages ([bd258f2](https://github.com/joshuachp/packages/commit/bd258f25dff4d5120ac9c7ed0d7652faa74233a2))
+* **rpm:** update packages ([1e0f0ea](https://github.com/joshuachp/packages/commit/1e0f0ea15b92d3dcd99aa77bc4e71885340308cf))
+* **rpm:** update packages ([df83f9e](https://github.com/joshuachp/packages/commit/df83f9ed9ecf594499dfcdc3fd4e96c1bd5fe3f3))
+* **rpm:** update packages ([69d6d14](https://github.com/joshuachp/packages/commit/69d6d1419060e93f019cc3d412702c85d58e6a2f))
+* **rpm:** update packages ([36c38a6](https://github.com/joshuachp/packages/commit/36c38a6b07a9bf44a65c43a1199c6e364ce13ce6))
+* update packages ([053efb2](https://github.com/joshuachp/packages/commit/053efb265c61d1fe9b733158c6314f6f4e10af95))
+* update packages ([4f628f8](https://github.com/joshuachp/packages/commit/4f628f85afb1e46b547b90ee7928562a8fa2aecf))
+
 ## [1.23.0](https://github.com/joshuachp/packages/compare/starship-v1.23.0...starship-v1.23.0) (2025-06-09)
 
 
