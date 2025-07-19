@@ -20,7 +20,7 @@
     "rpm/cargo-nextest": {
       "package-name": "cargo-nextest",
       "release-type": "simple",
-      "release-as": "0.9.99"
+      "release-as": "0.9.101"
     },
     "rpm/dprint": {
       "package-name": "dprint",
@@ -30,7 +30,7 @@
     "rpm/eza": {
       "package-name": "eza",
       "release-type": "simple",
-      "release-as": "0.21.6"
+      "release-as": "0.23.0"
     },
     "rpm/jj-cli": {
       "package-name": "jj-cli",
