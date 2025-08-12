@@ -31,7 +31,7 @@ jobs:
           dnf install -y fedora-packager git make
       - name: setup build environment
         run: rpmdev-setuptree
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           set-safe-directory: true
       # BUG: fixes permission in GitHub actions container
