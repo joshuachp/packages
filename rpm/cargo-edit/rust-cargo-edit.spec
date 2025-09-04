@@ -8,14 +8,14 @@
 %global crate cargo-edit
 
 Name:           rust-cargo-edit
-Version:        0.13.6
+Version:        0.13.7
 Release:        %autorelease
 Summary:        Cargo commands for modifying a Cargo.toml file.
 
 License:        Apache-2.0 OR MIT
 URL:            https://crates.io/crates/cargo-edit
 Source:         %{crates_source}
-Source:         cargo-edit-0.13.6-vendor.tar.xz
+Source:         cargo-edit-0.13.7-vendor.tar.xz
 
 BuildRequires:  cargo-rpm-macros >= 26
 

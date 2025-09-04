@@ -1,5 +1,5 @@
 --- starship-1.23.0/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ starship-1.23.0/Cargo.toml	2025-07-19T05:01:28.324014+00:00
++++ starship-1.23.0/Cargo.toml	2025-09-04T06:57:45.892478+00:00
 @@ -265,22 +265,6 @@
  ]
  default-features = false
