@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.50.2](https://github.com/joshuachp/packages/compare/dprint-v0.50.1...dprint-v0.50.2) (2025-10-03)
+
+
+### Features
+
+* **rpm:** update packages ([869b493](https://github.com/joshuachp/packages/commit/869b4937dcea4fa19eb96270a8831fd5327a0738))
+* **rpm:** update packages ([567c77d](https://github.com/joshuachp/packages/commit/567c77d4ffcb45c6419e096dcc82caf7096143ce))
+
 ## [0.50.1](https://github.com/joshuachp/packages/compare/dprint-v0.50.0...dprint-v0.50.1) (2025-07-03)
 
 

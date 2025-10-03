@@ -1,5 +1,15 @@
 # Changelog
 
+## [24.5.2](https://github.com/joshuachp/packages/compare/astartectl-v24.5.2...astartectl-v24.5.2) (2025-10-03)
+
+
+### Features
+
+* **rpm:** update all packages ([cdd3271](https://github.com/joshuachp/packages/commit/cdd3271d0c2677dea454d90dd94e7f990f7d80c1))
+* **rpm:** update all packages ([56094ef](https://github.com/joshuachp/packages/commit/56094efa4829cf7b2eff0941399cf9776013077c))
+* **rpm:** update packages ([69d6d14](https://github.com/joshuachp/packages/commit/69d6d1419060e93f019cc3d412702c85d58e6a2f))
+* **rpm:** update packages ([36c38a6](https://github.com/joshuachp/packages/commit/36c38a6b07a9bf44a65c43a1199c6e364ce13ce6))
+
 ## [24.5.2](https://github.com/joshuachp/packages/compare/astartectl-v24.5.2...astartectl-v24.5.2) (2025-09-04)
 
 

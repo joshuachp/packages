@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.105](https://github.com/joshuachp/packages/compare/cargo-nextest-v0.9.103...cargo-nextest-v0.9.105) (2025-10-03)
+
+
+### Features
+
+* **rpm:** update packages ([869b493](https://github.com/joshuachp/packages/commit/869b4937dcea4fa19eb96270a8831fd5327a0738))
+* **rpm:** update packages ([567c77d](https://github.com/joshuachp/packages/commit/567c77d4ffcb45c6419e096dcc82caf7096143ce))
+
 ## [0.9.103](https://github.com/joshuachp/packages/compare/cargo-nextest-v0.9.99...cargo-nextest-v0.9.103) (2025-09-04)
 
 
