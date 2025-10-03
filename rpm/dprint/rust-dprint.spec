@@ -8,14 +8,14 @@
 %global crate dprint
 
 Name:           rust-dprint
-Version:        0.50.1
+Version:        0.50.2
 Release:        %autorelease
 Summary:        Pluggable and configurable code formatting platform written in Rust.
 
 License:        MIT
 URL:            https://crates.io/crates/dprint
 Source:         %{crates_source}
-Source:         dprint-0.50.1-vendor.tar.xz
+Source:         dprint-0.50.2-vendor.tar.xz
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          dprint-fix-metadata-auto.diff
 

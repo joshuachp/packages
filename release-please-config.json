@@ -20,22 +20,22 @@
     "rpm/cargo-nextest": {
       "package-name": "cargo-nextest",
       "release-type": "simple",
-      "release-as": "0.9.103"
+      "release-as": "0.9.105"
     },
     "rpm/dprint": {
       "package-name": "dprint",
       "release-type": "simple",
-      "release-as": "0.50.1"
+      "release-as": "0.50.2"
     },
     "rpm/eza": {
       "package-name": "eza",
       "release-type": "simple",
-      "release-as": "0.23.1"
+      "release-as": "0.23.3"
     },
     "rpm/jj-cli": {
       "package-name": "jj-cli",
       "release-type": "simple",
-      "release-as": "0.33.0"
+      "release-as": "0.34.0"
     },
     "rpm/sccache": {
       "package-name": "sccache",
@@ -50,7 +50,7 @@
     "rpm/stylua": {
       "package-name": "stylua",
       "release-type": "simple",
-      "release-as": "2.1.0"
+      "release-as": "2.3.0"
     }
   }
 }
