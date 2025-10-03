@@ -8,14 +8,14 @@
 %global crate stylua
 
 Name:           rust-stylua
-Version:        2.1.0
+Version:        2.3.0
 Release:        %autorelease
 Summary:        Code formatter for Lua
 
 License:        MPL-2.0
 URL:            https://crates.io/crates/stylua
 Source:         %{crates_source}
-Source:         stylua-2.1.0-vendor.tar.xz
+Source:         stylua-2.3.0-vendor.tar.xz
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          stylua-fix-metadata-auto.diff
 

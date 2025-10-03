@@ -8,14 +8,14 @@
 %global crate eza
 
 Name:           rust-eza
-Version:        0.23.1
+Version:        0.23.3
 Release:        %autorelease
 Summary:        Modern replacement for ls
 
 License:        EUPL-1.2
 URL:            https://crates.io/crates/eza
 Source:         %{crates_source}
-Source:         eza-0.23.1-vendor.tar.xz
+Source:         eza-0.23.3-vendor.tar.xz
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          eza-fix-metadata-auto.diff
 
