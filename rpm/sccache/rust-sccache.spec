@@ -8,14 +8,14 @@
 %global crate sccache
 
 Name:           rust-sccache
-Version:        0.10.0
+Version:        0.11.0
 Release:        %autorelease
 Summary:        Ccache-like tool
 
 License:        Apache-2.0
 URL:            https://crates.io/crates/sccache
 Source:         %{crates_source}
-Source:         sccache-0.10.0-vendor.tar.xz
+Source:         sccache-0.11.0-vendor.tar.xz
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          sccache-fix-metadata-auto.diff
 
