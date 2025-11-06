@@ -10,7 +10,7 @@
     "rpm/atuin": {
       "package-name": "atuin",
       "release-type": "simple",
-      "release-as": "18.8.0"
+      "release-as": "18.10.0"
     },
     "rpm/cargo-edit": {
       "package-name": "cargo-edit",
@@ -20,7 +20,7 @@
     "rpm/cargo-nextest": {
       "package-name": "cargo-nextest",
       "release-type": "simple",
-      "release-as": "0.9.105"
+      "release-as": "0.9.111"
     },
     "rpm/dprint": {
       "package-name": "dprint",
@@ -35,22 +35,22 @@
     "rpm/jj-cli": {
       "package-name": "jj-cli",
       "release-type": "simple",
-      "release-as": "0.34.0"
+      "release-as": "0.35.0"
     },
     "rpm/sccache": {
       "package-name": "sccache",
       "release-type": "simple",
-      "release-as": "0.11.0"
+      "release-as": "0.12.0"
     },
     "rpm/starship": {
       "package-name": "starship",
       "release-type": "simple",
-      "release-as": "1.23.0"
+      "release-as": "1.24.0"
     },
     "rpm/stylua": {
       "package-name": "stylua",
       "release-type": "simple",
-      "release-as": "2.3.0"
+      "release-as": "2.3.1"
     }
   }
 }

@@ -23,7 +23,7 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     container:
-      image: fedora:41
+      image: fedora:43
     name: build ${{ inputs.name }}
     steps:
       - name: install dependencies
