@@ -1,12 +1,12 @@
 {
   "rpm/astartectl": "24.5.2",
-  "rpm/atuin": "18.8.0",
+  "rpm/atuin": "18.10.0",
   "rpm/cargo-edit": "0.13.7",
-  "rpm/cargo-nextest": "0.9.105",
+  "rpm/cargo-nextest": "0.9.111",
   "rpm/dprint": "0.50.2",
   "rpm/eza": "0.23.4",
-  "rpm/jj-cli": "0.34.0",
-  "rpm/sccache": "0.11.0",
-  "rpm/starship": "1.23.0",
-  "rpm/stylua": "2.3.0"
+  "rpm/jj-cli": "0.35.0",
+  "rpm/sccache": "0.12.0",
+  "rpm/starship": "1.24.0",
+  "rpm/stylua": "2.3.1"
 }
