@@ -43,7 +43,7 @@ jobs:
     name: release ${{ inputs.name }}
     runs-on: ubuntu-24.04
     container:
-      image: fedora:41
+      image: fedora:43
     steps:
       - name: install dependencies
         run: |

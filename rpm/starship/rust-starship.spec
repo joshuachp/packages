@@ -8,14 +8,14 @@
 %global crate starship
 
 Name:           rust-starship
-Version:        1.23.0
+Version:        1.24.0
 Release:        %autorelease
 Summary:        Minimal, blazing-fast, and infinitely customizable prompt for any shell! ☄🌌️
 
 License:        ISC
 URL:            https://crates.io/crates/starship
 Source:         %{crates_source}
-Source:         starship-1.23.0-vendor.tar.xz
+Source:         starship-1.24.0-vendor.tar.xz
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          starship-fix-metadata-auto.diff
 
